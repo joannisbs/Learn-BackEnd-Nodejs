@@ -1,0 +1,10 @@
+version: '2.1'
+services:
+  dbtest:
+    image: postgres:9.6.5-alpine
+    ports:
+      - 5431:5432
+    volumes:
+      - dbtest:/var/lib/postgresql/data
+volumes:
+  dbtest:
