@@ -2,11 +2,19 @@ const app = require('express')()
 
 const Sequelize = require('sequelize');
 
+const controllerPad = require('./src/controllers')
+
+const bodyParser = require('body-parser')
+
+const User = require('./modal/modal')
+
 const dbconfig = {
   database: 'postgres',
   username: 'postgres',
   password: 'postgres'
 }
+
+app.use(bodyParser.urlencoded({ extended: false }));
 
 const sequelize = new Sequelize({
   ...dbconfig,
@@ -23,6 +31,8 @@ const sequelize = new Sequelize({
   },
 })
 
+
+app.get('/', controllerPad )
 // const User = sequelize.define('user', {
 //   firstName: {
 //     type: Sequelize.STRING
