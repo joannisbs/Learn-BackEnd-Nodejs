@@ -8,28 +8,10 @@ const bodyParser = require('body-parser')
 
 const User = require('./modal/modal')
 
-const dbconfig = {
-  database: 'postgres',
-  username: 'postgres',
-  password: 'postgres'
-}
 
 app.use(bodyParser.urlencoded({ extended: false }));
 
-const sequelize = new Sequelize({
-  ...dbconfig,
-  host: 'localhost',
-  dialect:'postgres',
-  operatorsAliases: false,
-  port:5431,
 
-  pool: {
-    max: 5,
-    min: 0,
-    acquire: 30000,
-    idle: 10000
-  },
-})
 
 
 app.get('/', controllerPad )
