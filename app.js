@@ -6,8 +6,6 @@ const controllerPad = require('./src/controllers')
 
 const bodyParser = require('body-parser')
 
-const User = require('./modal/modal')
-
 
 app.use(bodyParser.urlencoded({ extended: false }));
 
