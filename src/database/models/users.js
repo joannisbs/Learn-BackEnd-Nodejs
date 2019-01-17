@@ -21,5 +21,9 @@ module.exports = (sequelize) => {
     },
     
   })
+  user.associate = (models) => {
+    user.hasMany(models.userRoles)
+  }
+
   return user
 }
