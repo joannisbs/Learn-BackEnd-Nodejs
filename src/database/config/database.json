@@ -1,0 +1,51 @@
+{
+  "development": {
+    "username": "postgres",
+    "password": "postgres",
+    "database": "postgres",
+    "host": "localhost",
+    "dialect": "postgres",
+    "operatorsAliases": false,
+    "port":5431,
+    "pool": {
+      "max": 5,
+      "min": 0,
+      "acquire": 30000,
+      "idle": 10000
+    }
+  },
+  "test": {
+    "development": {
+      "username": "postgres",
+      "password": "postgres",
+      "database": "postgres",
+      "host": "localhost",
+      "dialect": "postgres",
+      "operatorsAliases": false,
+      "port":5431,
+      "pool": {
+        "max": 5,
+        "min": 0,
+        "acquire": 30000,
+        "idle": 10000
+      }
+    }
+  },
+  "production": {
+    "development": {
+      "username": "postgres",
+      "password": "postgres",
+      "database": "postgres",
+      "host": "localhost",
+      "dialect": "postgres",
+      "operatorsAliases": false,
+      "port":5431,
+      "pool": {
+        "max": 5,
+        "min": 0,
+        "acquire": 30000,
+        "idle": 10000
+      }
+    }
+  }
+}
