@@ -5,7 +5,8 @@
   "main": "part1.js",
   "scripts": {
     "test": "jest",
-    "migrate": "./node_modules/.bin/sequelize db:migrate"
+    "migrate": "./node_modules/.bin/sequelize db:migrate",
+    "createMigration": "node_modules/.bin/sequelize migration:create"
   },
   "author": "",
   "license": "ISC",
