@@ -6,7 +6,7 @@ const userRoles = require('./userRoles')
 module.exports = [
   users,
   roles,
-  userROles
+  userRoles
 ]
 
 
