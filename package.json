@@ -2,8 +2,10 @@
   "name": "curso",
   "version": "1.0.0",
   "description": "",
-  "main": "part1.js",
+  "main": "app.js",
   "scripts": {
+    "start:dev": "nodemon ./src/app.js",
+    "start": "node ./src/app.js",
     "test": "jest",
     "migrate": "./node_modules/.bin/sequelize db:migrate",
     "createMigration": "node_modules/.bin/sequelize migration:create"
