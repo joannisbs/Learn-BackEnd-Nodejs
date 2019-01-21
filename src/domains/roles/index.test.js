@@ -15,6 +15,33 @@ describe('addRoles', () => {
   })
 })
 
+describe('get', () => {
+  let createRolesInstance = {}
+  let rolesMockInstance = {}
+
+  beforeEach( async () => {
+
+    let { createRoles, rolesMock } = await createRole()
+    createRolesInstance = createRoles
+    rolesMockInstance = rolesMock
+  })
+    
+  // test('should get a user by id', async () => {
+   
+  //   const rolesReturned = await rolesDomain.getById(createRolesInstance.id)
+
+  //   expect(rolesReturned).toEqual(createRolesInstance)
+    
+  // })
+  test('should get all roles', async () => {
+   
+    const rolesReturned = await rolesDomain.getAll()
+
+    expect(rolesReturned.length > 0).toBeTruthy()
+    
+  })
+})
+
 async function createRole() {
   const rolesMock = { 
     name: faker.name.findName(), 
