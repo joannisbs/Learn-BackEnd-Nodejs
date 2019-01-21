@@ -7,21 +7,93 @@ const userDomain = new UserDomain()
 
 describe('add', () => {
   test('should add a user', async () => {
-    const userMock = { 
-      name: faker.name.findName(), 
-      password: 'abacadabra',
-      username:faker.name.firstName()
-    }
-    const user = await userDomain.add(userMock)
-    const createUser = R.omit(['createdAt', 'deletedAt', 'updatedAt', 'id'], user.get({ raw: true }))
+    let { createUser, userMock } = await addUserMock()
 
-    const isPasswordCorrect = bcrypt.compare(userMock.password, createUser.password)
+    const userToVerify = R.omit(['createdAt', 'deletedAt', 'updatedAt', 'id'], createUser )
+    const isPasswordCorrect = bcrypt.compare(userMock.password, userToVerify.password)
    
     expect(isPasswordCorrect).toBeTruthy()
-
-    expect(R.omit(['password'],userMock)).toEqual(R.omit(['password'],createUser))
+    expect(R.omit(['password'],userMock)).toEqual(R.omit(['password'],userToVerify))
   })
 })
 
+describe('update', () => {
+
+  let createUserInstance = {}
+  let userMockInstance = {}
+
+  beforeEach( async () => {
+
+    let { createUser, userMock } = await addUserMock()
+    createUserInstance = createUser
+    userMockInstance = userMock
+  })
+    
+  test('should update a name user', async () => {
+   
+    let newUserMock = createMock(['password','id','username']) 
+    
+    const user = await userDomain.updatebyId(newUserMock, { userId: createUserInstance.id })
+    const updateUser = user.get({ raw: true })
+
+    expect(newUserMock.name).toEqual(updateUser.name)
+    expect(R.omit(['password','name'],userMockInstance)).toEqual(R.omit(['password','name','createdAt', 'deletedAt', 'updatedAt', 'id'],updateUser))
+
+    const isPasswordCorrect = bcrypt.compare(userMockInstance.password, updateUser.password)
+    expect(isPasswordCorrect).toBeTruthy()
+
+    expect(updateUser.id).toEqual(createUserInstance.id)
+  })
+
+  test('should update a password user', async () => {
+   
+    let newUserMock = createMock(['name','id','username']) 
+    
+    const user = await userDomain.updatebyId(newUserMock, { userId: createUserInstance.id })
+    const updateUser = user.get({ raw: true })
+
+    expect(R.omit(['password'],userMockInstance)).toEqual(R.omit(['password','createdAt', 'deletedAt', 'updatedAt', 'id'],updateUser))
+
+    const isPasswordCorrect = bcrypt.compare(newUserMock.password, updateUser.password)
+    expect(isPasswordCorrect).toBeTruthy()
+
+    expect(updateUser.id).toEqual(createUserInstance.id)
+  })
+
+  test('should update a username user', async () => {
+   
+    let newUserMock = createMock(['password','id','name']) 
+    
+    const user = await userDomain.updatebyId(newUserMock, { userId: createUserInstance.id })
+    const updateUser = user.get({ raw: true })
+
+    expect(newUserMock.username).toEqual(updateUser.username)
+    expect(R.omit(['password','username'],userMockInstance)).toEqual(R.omit(['password','username','createdAt', 'deletedAt', 'updatedAt', 'id'],updateUser))
+
+    const isPasswordCorrect = bcrypt.compare(userMockInstance.password, updateUser.password)
+    expect(isPasswordCorrect).toBeTruthy()
+
+    expect(updateUser.id).toEqual(createUserInstance.id)
+  })
 
 
+  
+})
+
+function createMock(hide) {
+  const userMock = { 
+    name: faker.name.findName(), 
+    password: faker.internet.password(),
+    username: faker.name.firstName()
+  }
+  return R.omit(hide,userMock)
+}
+
+async function addUserMock() {
+
+  let userMock = createMock(['']) 
+
+  const user = await userDomain.add(userMock)
+  const createUser = user.get({ raw: true })
+  return { createUser, userMock }
+}
