@@ -11,7 +11,7 @@ module.exports = (sequelize) => {
       type: Sequelize.STRING,
       allowNull: false,
     },
-    rolerId: {
+    roleId: {
       type: Sequelize.STRING,
       allowNull: false,
     },
