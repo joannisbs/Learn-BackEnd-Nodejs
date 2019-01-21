@@ -15,6 +15,40 @@ describe('addRoles', () => {
   })
 })
 
+
+describe('update', () => {
+
+  let createRolesInstance = {}
+  let rolesMockInstance = {}
+
+  beforeEach( async () => {
+
+    let { createRoles, rolesMock } = await createRole()
+    createRolesInstance = createRoles
+    rolesMockInstance = rolesMock
+  })
+
+  test('should update a name of role', async () => {
+   
+    const name = { name: 'vitor' }
+    
+    const updateRoles = await rolesDomain.updateById(name, { rolesId: createRolesInstance.id })
+
+    expect('vitor').toEqual(updateRoles.name)
+    
+  })
+
+  test('should update a description role', async () => {
+   
+    const Description = { description: 'descricaolazarenta' }
+    
+    const updateRoles = await rolesDomain.updateById(Description, { rolesId: createRolesInstance.id })
+
+    expect('descricaolazarenta').toEqual(updateRoles.description)
+  })
+
+})
+
 describe('get', () => {
   let createRolesInstance = {}
   let rolesMockInstance = {}
