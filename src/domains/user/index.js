@@ -9,14 +9,15 @@ class UserDomain {
 
   async updatebyId(userToUpdate, options = {}){
     const { userId } = options
-
     const userInstance = await User.findByPk(userId)
-
     const userToUpdateData = R.omit(['id'], userToUpdate)
-
-    await userInstance.update(userToUpdateData)
-
-    return userInstance
+  
+    return userInstance.update(userToUpdateData)
+  }
+  
+  async getById (userId){
+    console.log(userId)
+    return User.findByPk(userId)
   }
 
 }
