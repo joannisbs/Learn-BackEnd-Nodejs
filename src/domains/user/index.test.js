@@ -72,9 +72,6 @@ describe('update', () => {
 
     expect(updateUser.id).toEqual(createUserInstance.id)
   })
-
-
-  
 })
 
 describe('get', () => {
