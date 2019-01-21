@@ -95,6 +95,13 @@ describe('get', () => {
     expect(userReturned).toEqual(createUserInstance)
     
   })
+  test('should get all users', async () => {
+   
+    const userReturned = await userDomain.getAll()
+
+    expect(userReturned.length > 0).toBeTruthy()
+    
+  })
 })
 
 function createMock(hide) {
