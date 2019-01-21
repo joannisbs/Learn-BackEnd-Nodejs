@@ -17,7 +17,7 @@ module.exports = (sequelize) => {
     },
   })
   roles.associate = (models) => {
-    roles.belongsTo(models.userRoles)
+    roles.hasMany(models.userRoles)
   }
 
   return roles

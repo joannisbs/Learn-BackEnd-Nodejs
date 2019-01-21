@@ -19,7 +19,7 @@ module.exports = (sequelize) => {
 
   userRoles.associate = (models) => {
     userRoles.belongsTo(models.user)
-    userRoles.hasMany(models.roles)
+    userRoles.belongsTo(models.roles)
   }
 
   return userRoles
