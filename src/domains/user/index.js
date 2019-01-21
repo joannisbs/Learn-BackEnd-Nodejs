@@ -4,7 +4,7 @@ const User = database.model('user')
 
 class UserDomain {
   async add (user){
-    return User.create(user)
+    return (await User.create(user)).get({ raw: true})
   }
 
   async updatebyId(userToUpdate, options = {}){
@@ -12,12 +12,12 @@ class UserDomain {
     const userInstance = await User.findByPk(userId)
     const userToUpdateData = R.omit(['id'], userToUpdate)
   
-    return userInstance.update(userToUpdateData)
+    return (await userInstance.update(userToUpdateData)).get({ raw: true})
   }
   
   async getById (userId){
     console.log(userId)
-    return User.findByPk(userId)
+    return (await User.findByPk(userId)).get({ raw: true})
   }
 
 }

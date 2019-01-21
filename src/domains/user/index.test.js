@@ -33,8 +33,7 @@ describe('update', () => {
    
     let newUserMock = createMock(['password','id','username']) 
     
-    const user = await userDomain.updatebyId(newUserMock, { userId: createUserInstance.id })
-    const updateUser = user.get({ raw: true })
+    const updateUser = await userDomain.updatebyId(newUserMock, { userId: createUserInstance.id })
 
     expect(newUserMock.name).toEqual(updateUser.name)
     expect(R.omit(['password','name'],userMockInstance)).toEqual(R.omit(['password','name','createdAt', 'deletedAt', 'updatedAt', 'id'],updateUser))
@@ -49,8 +48,7 @@ describe('update', () => {
    
     let newUserMock = createMock(['name','id','username']) 
     
-    const user = await userDomain.updatebyId(newUserMock, { userId: createUserInstance.id })
-    const updateUser = user.get({ raw: true })
+    const updateUser = await userDomain.updatebyId(newUserMock, { userId: createUserInstance.id })
 
     expect(R.omit(['password'],userMockInstance)).toEqual(R.omit(['password','createdAt', 'deletedAt', 'updatedAt', 'id'],updateUser))
 
@@ -64,8 +62,7 @@ describe('update', () => {
    
     let newUserMock = createMock(['password','id','name']) 
     
-    const user = await userDomain.updatebyId(newUserMock, { userId: createUserInstance.id })
-    const updateUser = user.get({ raw: true })
+    const updateUser = await userDomain.updatebyId(newUserMock, { userId: createUserInstance.id })
 
     expect(newUserMock.username).toEqual(updateUser.username)
     expect(R.omit(['password','username'],userMockInstance)).toEqual(R.omit(['password','username','createdAt', 'deletedAt', 'updatedAt', 'id'],updateUser))
@@ -93,7 +90,7 @@ describe('get', () => {
     
   test('should get a user by id', async () => {
    
-    const userReturned = (await userDomain.getById(createUserInstance.id)).get({ raw: true })
+    const userReturned = await userDomain.getById(createUserInstance.id)
 
     expect(userReturned).toEqual(createUserInstance)
     
@@ -113,7 +110,6 @@ async function addUserMock() {
 
   let userMock = createMock(['']) 
 
-  const user = await userDomain.add(userMock)
-  const createUser = user.get({ raw: true })
+  const createUser = await userDomain.add(userMock)
   return { createUser, userMock }
 }
