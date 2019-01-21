@@ -80,6 +80,26 @@ describe('update', () => {
   
 })
 
+describe('get', () => {
+  let createUserInstance = {}
+  let userMockInstance = {}
+
+  beforeEach( async () => {
+
+    let { createUser, userMock } = await addUserMock()
+    createUserInstance = createUser
+    userMockInstance = userMock
+  })
+    
+  test('should get a user by id', async () => {
+   
+    const userReturned = (await userDomain.getById(createUserInstance.id)).get({ raw: true })
+
+    expect(userReturned).toEqual(createUserInstance)
+    
+  })
+})
+
 function createMock(hide) {
   const userMock = { 
     name: faker.name.findName(), 
