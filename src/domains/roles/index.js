@@ -7,6 +7,10 @@ class RolesDomain {
     return (await Roles.create(roles)).get({ raw: true })
   }
 
+  async getAll (){
+    return Roles.findAll({ raw: true })
+  }
+
 }
 
 module.exports =  RolesDomain 
