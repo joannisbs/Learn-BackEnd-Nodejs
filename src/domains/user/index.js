@@ -16,8 +16,11 @@ class UserDomain {
   }
   
   async getById (userId){
-    console.log(userId)
     return (await User.findByPk(userId)).get({ raw: true})
+  }
+
+  async getAll (){
+    return User.findAll({ raw: true })
   }
 
 }
