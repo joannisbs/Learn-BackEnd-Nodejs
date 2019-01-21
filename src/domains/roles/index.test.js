@@ -26,13 +26,13 @@ describe('get', () => {
     rolesMockInstance = rolesMock
   })
     
-  // test('should get a user by id', async () => {
+  test('should get a user by id', async () => {
    
-  //   const rolesReturned = await rolesDomain.getById(createRolesInstance.id)
+    const rolesReturned = await rolesDomain.getById(createRolesInstance.id)
 
-  //   expect(rolesReturned).toEqual(createRolesInstance)
+    expect(rolesReturned).toEqual(createRolesInstance)
     
-  // })
+  })
   test('should get all roles', async () => {
    
     const rolesReturned = await rolesDomain.getAll()
