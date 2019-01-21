@@ -17,7 +17,7 @@ module.exports = {
           key: 'id'
         }
       },
-      rolerId: {
+      roleId: {
         type: Sequelize.UUID,
         allowNull: false,
         references: {
