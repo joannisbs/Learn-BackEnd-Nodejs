@@ -25,7 +25,7 @@ describe('add User Roles', () => {
     
     const userRoleInstance = await userRoleDomain.add(userRoleMock)
 
-    expect(userRoleMock).toEqual(R.omit(['createdAt','id','updatedAt'],userRoleInstance))
+    expect(userRoleMock).toEqual(R.omit(['deletedAt','createdAt','id','updatedAt'],userRoleInstance))
   })
 })
 
