@@ -4,9 +4,9 @@
   "description": "",
   "main": "app.js",
   "scripts": {
-    "start:dev": "nodemon ./src/app.js",
+    "start:dev": "export node_env=development && nodemon ./src/app.js",
     "start": "node ./src/app.js",
-    "test": "jest --detectOpenHandles --forceExit",
+    "test": "export node_env=development && jest --detectOpenHandles --forceExit",
     "migrate": "./node_modules/.bin/sequelize db:migrate",
     "createMigration": "node_modules/.bin/sequelize migration:create"
   },
