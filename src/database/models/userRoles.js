@@ -1,7 +1,9 @@
 const Sequelize = require('sequelize')
 
 module.exports = (sequelize) => {
-  const userRoles = sequelize.define('userRoles', {
+  const userRoles = sequelize.define(
+    'userRoles', 
+    {
     id: {
       type: Sequelize.UUID,
       defaultValue: Sequelize.UUIDV4,
@@ -14,7 +16,11 @@ module.exports = (sequelize) => {
     roleId: {
       type: Sequelize.STRING,
       allowNull: false,
-    },
+    }
+  },
+  {
+    paranoid: true,
+    timestamp: true
   })
 
   userRoles.associate = (models) => {

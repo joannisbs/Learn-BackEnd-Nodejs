@@ -14,7 +14,11 @@ module.exports = (sequelize) => {
     description: {
       type: Sequelize.STRING,
       allowNull: false,
-    },
+    }
+  },
+  {
+    paranoid: true,
+    timestamp: true
   })
   roles.associate = (models) => {
     roles.hasMany(models.userRoles)

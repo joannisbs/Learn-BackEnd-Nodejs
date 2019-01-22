@@ -19,8 +19,11 @@ module.exports = (sequelize) => {
     password: {
       type: Sequelize.STRING,
       allowNull: false,
-    },
-    
+    }
+  },
+  {
+    paranoid: true,
+    timestamp: true
   })
   user.associate = (models) => {
     user.hasMany(models.userRoles)
