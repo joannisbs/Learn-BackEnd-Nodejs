@@ -12,9 +12,20 @@ const newUser = async (req, res, next) => {
   }
 }
 
+const getUser = async (req, res, next) => {
+  try {
+    const listOfUser = await userDomain.getAll(req.body)
+    res.json(listOfUser)
+
+  } catch (error) {
+    next(error)
+  }
+}
+
 
 module.exports = {
   newUser,
+  getUser
 }
 
 
