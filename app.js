@@ -1,13 +1,14 @@
 const app = require('express')()
-
-const controllerPad = require('./src/controllers')
+const cors = require('cors')
+const controllerUser = require('./src/routes/userRoute')
 
 const bodyParser = require('body-parser')
 
 app.use(bodyParser.urlencoded({ extended: false }));
+app.use(cors())
 
 
-app.get('/', controllerPad )
+app.use('/api', controllerUser )
 
 
 app.listen(5000, () => console.log('runninng....\nmode ' + process.env.node_env))
