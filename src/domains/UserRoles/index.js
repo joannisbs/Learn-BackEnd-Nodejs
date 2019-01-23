@@ -4,14 +4,23 @@ const UserRoles = database.model('userRoles')
 
 class RolesDomain {
   async add (roleLink){
-    return (await UserRoles.create(roleLink)).get({ raw: true })
+    const role = await UserRoles.create(roleLink)
+    return role.get({ raw: true })
   }
-  // async getById (rolesId){
-  //   return (await Roles.findByPk(rolesId)).get({ raw: true})
-  // }
-  // async getAll (){
-  //   return Roles.findAll({ raw: true })
-  // }
+
+  async del (roleLinkId){
+    return UserRoles.destroy(roleLinkId)
+  }
+
+  async getById (roleLinkId){
+    const role = await UserRoles.findByPk(roleLinkId)
+    return role.get({ raw: true })
+  }
+
+  async getAll (){
+    return UserRoles.findAll({ raw: true })
+  }
+
   // async updateById(rolerToUpdate, options = {}){
   //   const { rolesId } = options
   //   const rolesInstance = await Roles.findByPk(rolesId)
