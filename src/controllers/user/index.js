@@ -22,10 +22,20 @@ const getUser = async (req, res, next) => {
   }
 }
 
+const getOneUserById = async (req, res, next) => {
+  try {
+    const listOfUser = await userDomain.getById(req.params.id)
+    res.json(listOfUser)
+
+  } catch (error) {
+    next(error)
+  }
+}
 
 module.exports = {
   newUser,
-  getUser
+  getUser,
+  getOneUserById
 }
 
 
