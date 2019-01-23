@@ -44,7 +44,7 @@ describe('get', () => {
 
   test('should delete roles', async () => {
     const userRolesReturned = await userRoleDomain.delete(userRoleInstance.id)
-    expect(userRolesReturned.length == 0).toBeTruthy()
+    expect(userRolesReturned).toBeTruthy()
   })
 
 })
