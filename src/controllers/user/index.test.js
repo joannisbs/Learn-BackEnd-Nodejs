@@ -39,4 +39,11 @@ describe('/user get', () => {
     expect(response.statusCode).toBe(200)
     expect(response.body.length > 0).toBeTruthy()
   })
+
+  test('should return user by Id', async () =>{
+    const response = await request().get(`/api/user/${userCreated.id}`)
+    expect(response.statusCode).toBe(200)
+    expect(response.body.name).toEqual(userCreated.name)
+    expect(response.body.id).toEqual(userCreated.id)
+  })
 })
