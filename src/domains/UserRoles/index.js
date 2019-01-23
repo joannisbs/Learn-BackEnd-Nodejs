@@ -8,8 +8,10 @@ class RolesDomain {
     return role.get({ raw: true })
   }
 
-  async del (roleLinkId){
-    return UserRoles.destroy(roleLinkId)
+  async delete (roleLinkId){
+    return UserRoles.destroy({
+      where: { id: roleLinkId }
+    })
   }
 
   async getById (roleLinkId){
@@ -20,15 +22,7 @@ class RolesDomain {
   async getAll (){
     return UserRoles.findAll({ raw: true })
   }
-
-  // async updateById(rolerToUpdate, options = {}){
-  //   const { rolesId } = options
-  //   const rolesInstance = await Roles.findByPk(rolesId)
-  //   const rolerToUpdateData = R.omit(['id'], rolerToUpdate)
-  
-  //   return (await rolesInstance.update(rolerToUpdateData)).get({ raw: true})
-  // }
-
 }
+
 
 module.exports =  RolesDomain 
