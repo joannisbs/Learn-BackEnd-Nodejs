@@ -16,9 +16,6 @@ describe('add User Roles', () => {
  
   beforeEach( async () => {
     userRoleMock = { userId: await addUserMock(), roleId:await createRole() }
-    // let userId = await addUserMock()
-    // let roleId = await createRole()
-
   })
 
   test('should add a new userRole link', async () => {
@@ -29,6 +26,39 @@ describe('add User Roles', () => {
   })
 })
 
+describe('get', () => {
+  let userRoleInstance = {}
+ 
+  beforeEach( async () => {
+    let userRoleMock = { userId: await addUserMock(), roleId:await createRole() }
+    userRoleInstance = await userRoleDomain.add(userRoleMock)
+  })
+
+
+  // test('should add a new userRole link', async () => {
+    
+  //   const userRoleInstance = await userRoleDomain.add(userRoleMock)
+
+  //   expect(userRoleMock).toEqual(R.omit(['deletedAt','createdAt','id','updatedAt'],userRoleInstance))
+  // })
+      
+  test('should get a user by id', async () => {
+     
+    const userRolesReturned = await userRoleDomain.getById(userRoleInstance.id)
+
+    expect(userRolesReturned).toEqual(userRoleInstance)
+    
+  })
+  test('should get all roles', async () => {
+      
+    const userRolesReturned = await userRoleDomain.getAll(userRoleInstance.id)
+
+
+    expect(userRolesReturned.length > 0).toBeTruthy()
+      
+  })
+})
+  
 
 async function createRole() {
   const rolesMock = { 
@@ -90,32 +120,6 @@ async function addUserMock() {
 
 // })
 
-// describe('get', () => {
-//   let createRolesInstance = {}
-//   let rolesMockInstance = {}
-
-//   beforeEach( async () => {
-
-//     let { createRoles, rolesMock } = await createRole()
-//     createRolesInstance = createRoles
-//     rolesMockInstance = rolesMock
-//   })
-    
-//   test('should get a user by id', async () => {
-   
-//     const rolesReturned = await rolesDomain.getById(createRolesInstance.id)
-
-//     expect(rolesReturned).toEqual(createRolesInstance)
-    
-//   })
-//   test('should get all roles', async () => {
-   
-//     const rolesReturned = await rolesDomain.getAll()
-
-//     expect(rolesReturned.length > 0).toBeTruthy()
-    
-//   })
-// })
 
 // async function createRole() {
 //   const rolesMock = { 
@@ -125,4 +129,6 @@ async function addUserMock() {
 //   const createRoles = await rolesDomain.add(rolesMock)
 //   return { createRoles, rolesMock }
 // }
+
+//
 
