@@ -14,6 +14,8 @@ router.post('/user', userController.newUser)
 router.get('/role/:id', rolesController.getOneRolesById)
 router.get('/role', rolesController.getRoles)
 
+router.put('/role/:id', rolesController.updateRoles)
+
 router.post('/role', rolesController.newRoles)
 
 
