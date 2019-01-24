@@ -20,10 +20,10 @@ router.put('/role/:id', rolesController.updateRoles)
 router.post('/role', rolesController.newRoles)
 
 // routes of link-user-role
-router.get('/link-user-role/:userId', linkUserRolesController.getUserRoleLinkByUser)
-// router.get('/role', rolesController.getRoles)
-
-// router.put('/role/:id', rolesController.updateRoles)
+router.get('/link-user-role/user/:userId', linkUserRolesController.getUserRoleLinkByUser)
+router.get('/link-user-role/role/:roleId', linkUserRolesController.getUserRoleLinkByRole)
+router.get('/link-user-role/:id', linkUserRolesController.getRoleLinkById)
+//router.put('/role/:id', rolesController.updateRoles)
 
 router.post('/link-user-role', linkUserRolesController.newUserRoleLink)
 
