@@ -35,40 +35,53 @@ describe('/roleUser add link', () =>{
   })
 })
  
-// describe('/user get', () => {
-//   let userCreated = null
-//   let userMock = null
+describe('/user get', () => {
+  let roleId = null
+  let userId = null
+  let userRoleLink = null
 
-//   beforeEach(  criaMock = async ()=> {
-//     userMock = {
-//       name: faker.name.findName(), 
-//       password: faker.internet.password(),
-//       username: faker.name.firstName()
-//     }
-//     userCreated = (await request().post('/api/user',userMock)).body
-//   })
-
-//   test('should return all user', async () =>{
-//     const response = await request().get('/api/user')
-//     expect(response.statusCode).toBe(200)
-//     expect(response.body.length > 0).toBeTruthy()
-//   })
-
-//   test('should return user by Id', async () =>{
-//     const response = await request().get(`/api/user/${userCreated.id}`)
-//     expect(response.statusCode).toBe(200)
-//     expect(response.body.name).toEqual(userCreated.name)
-//     expect(response.body.id).toEqual(userCreated.id)
-//   })
-
-//   test('should update user by Id', async () =>{
-//     const idUserToUpdate = userCreated.id
-//     criaMock()
-//     const response = await request().put(`/api/user/${idUserToUpdate}`,userMock)
+  beforeEach(  criaLinkMock = async () => {
     
-//     expect(response.statusCode).toBe(200)
-//     expect(response.body.name).toEqual(userMock.name)
-//     expect(response.body.id).toEqual(idUserToUpdate)
-//   })
+    const userMock = {
+      name: faker.name.findName(), 
+      password: faker.internet.password(),
+      username: faker.name.firstName()
+    }
+    const rolerMock = {
+      name: faker.name.findName(), 
+      description: faker.lorem.sentence(5),
+    }
+    
+    userId = (await request().post('/api/user', userMock)).body.id
+    roleId = (await request().post('/api/role', rolerMock)).body.id
+    
+    userRoleLink = await request().post('/api/link-user-role', { userId, roleId })
+  })
 
-// })
+  
+  test('should return roleUserLink by userId', async () => {
+    const response = await request().get(`/api/link-user-role/${userId}`)
+    expect(response.statusCode).toBe(200)
+    expect(response.body.length > 0).toBeTruthy()
+
+  })
+
+
+  // test('should return user by Id', async () =>{
+  //   const response = await request().get(`/api/user/${userCreated.id}`)
+  //   expect(response.statusCode).toBe(200)
+  //   expect(response.body.name).toEqual(userCreated.name)
+  //   expect(response.body.id).toEqual(userCreated.id)
+  // })
+
+  // test('should update user by Id', async () =>{
+  //   const idUserToUpdate = userCreated.id
+  //   criaMock()
+  //   const response = await request().put(`/api/user/${idUserToUpdate}`,userMock)
+    
+  //   expect(response.statusCode).toBe(200)
+  //   expect(response.body.name).toEqual(userMock.name)
+  //   expect(response.body.id).toEqual(idUserToUpdate)
+  // })
+
+})
