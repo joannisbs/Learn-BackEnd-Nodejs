@@ -25,7 +25,7 @@ const getRoles = async (req, res, next) => {
 
 const updateRoles = async (req, res, next) => {
   try {
-    const listOfRoles = await rolesDomain.updatebyId(req.body, { RolesId: req.params.id })
+    const listOfRoles = await rolesDomain.updateById(req.body, { rolesId: req.params.id })
     res.json(listOfRoles)
 
   } catch (error) {
