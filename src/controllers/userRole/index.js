@@ -24,7 +24,17 @@ const getUserRoleLinkByUser = async (req, res, next) => {
 
 const getRoleLinkById = async (req, res, next) => {
   try {
-    const listOfUserRole = await userRoleDomain.getAll()
+    const listOfUserRole = await userRoleDomain.getById(req.params.id)
+    res.json(listOfUserRole)
+
+  } catch (error) {
+    next(error)
+  }
+}
+
+const getUserRoleLinkByRole = async (req, res, next) => {
+  try {
+    const listOfUserRole = await userRoleDomain.getByRoleId(req.params.roleId)
     res.json(listOfUserRole)
 
   } catch (error) {
@@ -55,6 +65,8 @@ const getRoleLinkById = async (req, res, next) => {
 module.exports = {
   newUserRoleLink,
   getUserRoleLinkByUser,
+  getRoleLinkById,
+  getUserRoleLinkByRole
 
 
 }

@@ -60,12 +60,24 @@ describe('/user get', () => {
 
   
   test('should return roleUserLink by userId', async () => {
-    const response = await request().get(`/api/link-user-role/${userId}`)
+    const response = await request().get(`/api/link-user-role/user/${userId}`)
     expect(response.statusCode).toBe(200)
     expect(response.body.length > 0).toBeTruthy()
 
   })
 
+  test('should return roleUserLink by roleLinkId', async () => {
+    const response = await request().get(`/api/link-user-role/${userRoleLink.body.id}`)
+    expect(response.statusCode).toBe(200)
+    expect(response.body.userId).toEqual(userId)
+    expect(response.body.roleId).toEqual(roleId)
+  })
+
+  test('should return roleUserLink by roleId', async () => {
+    const response = await request().get(`/api/link-user-role/role/${userRoleLink.body.roleId}`)
+    expect(response.statusCode).toBe(200)
+    expect(response.body.length > 0).toBeTruthy()
+  })
 
   // test('should return user by Id', async () =>{
   //   const response = await request().get(`/api/user/${userCreated.id}`)
