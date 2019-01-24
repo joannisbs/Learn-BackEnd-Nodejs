@@ -26,15 +26,21 @@ describe('add User Roles', () => {
 
 describe('get', () => {
   let userRoleInstance = {}
+  let userRoleMock = {}
  
   beforeEach( async () => {
-    let userRoleMock = {userId: await addUserMock(), roleId:await createRole()}
+    userRoleMock = {userId: await addUserMock(), roleId:await createRole()}
     userRoleInstance = await userRoleDomain.add(userRoleMock)
   })
 
-  test('should get a user by id', async () => {
+  test('should get a roler by id', async () => {
     const userRolesReturned = await userRoleDomain.getById(userRoleInstance.id)
     expect(userRolesReturned).toEqual(userRoleInstance)
+  })
+
+  test('should get a roler by userid', async () => {
+    const userRolesReturned = await userRoleDomain.getByUserId(userRoleMock.userId)
+    expect(userRolesReturned.length > 0).toBeTruthy()
   })
 
   test('should get all roles', async () => {

@@ -19,6 +19,11 @@ class RolesDomain {
     return role.get({ raw: true })
   }
 
+  async getByUserId (userId){
+    const role = await UserRoles.findAll( {where:{ userId }},{ raw: true } )
+    return role
+  }
+
   async getAll (){
     return UserRoles.findAll({ raw: true })
   }
