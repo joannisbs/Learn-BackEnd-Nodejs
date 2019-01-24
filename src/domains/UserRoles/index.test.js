@@ -43,6 +43,11 @@ describe('get', () => {
     expect(userRolesReturned.length > 0).toBeTruthy()
   })
 
+  test('should get a roler by userid', async () => {
+    const userRolesReturned = await userRoleDomain.getByRoleId(userRoleMock.roleId)
+    expect(userRolesReturned.length > 0).toBeTruthy()
+  })
+
   test('should get all roles', async () => {
     const userRolesReturned = await userRoleDomain.getAll(userRoleInstance.id)
     expect(userRolesReturned.length > 0).toBeTruthy()
