@@ -14,7 +14,17 @@ const newUser = async (req, res, next) => {
 
 const getUser = async (req, res, next) => {
   try {
-    const listOfUser = await userDomain.getAll(req.body)
+    const listOfUser = await userDomain.getAll()
+    res.json(listOfUser)
+
+  } catch (error) {
+    next(error)
+  }
+}
+
+const updateUser = async (req, res, next) => {
+  try {
+    const listOfUser = await userDomain.updatebyId(req.body, { userId: req.params.id })
     res.json(listOfUser)
 
   } catch (error) {
@@ -35,7 +45,8 @@ const getOneUserById = async (req, res, next) => {
 module.exports = {
   newUser,
   getUser,
-  getOneUserById
+  getOneUserById,
+  updateUser
 }
 
 

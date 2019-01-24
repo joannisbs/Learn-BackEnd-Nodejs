@@ -24,9 +24,10 @@ describe('/user add', () =>{
  
 describe('/user get', () => {
   let userCreated = null
+  let userMock = null
 
-  beforeEach( async ()=> {
-    const userMock = {
+  beforeEach(  criaMock = async ()=> {
+    userMock = {
       name: faker.name.findName(), 
       password: faker.internet.password(),
       username: faker.name.firstName()
@@ -46,4 +47,15 @@ describe('/user get', () => {
     expect(response.body.name).toEqual(userCreated.name)
     expect(response.body.id).toEqual(userCreated.id)
   })
+
+  test('should update user by Id', async () =>{
+    const idUserToUpdate = userCreated.id
+    criaMock()
+    const response = await request().put(`/api/user/${idUserToUpdate}`,userMock)
+    
+    expect(response.statusCode).toBe(200)
+    expect(response.body.name).toEqual(userMock.name)
+    expect(response.body.id).toEqual(idUserToUpdate)
+  })
+
 })
