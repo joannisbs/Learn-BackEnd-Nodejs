@@ -1,0 +1,53 @@
+const RolesDomain = require('../../domains/roles')
+
+const rolesDomain = new RolesDomain()
+
+
+const newRoles = async (req, res, next) => {
+  try {
+    const createdRoles = await rolesDomain.add(req.body)
+    res.json(createdRoles)
+
+  } catch (error) {
+    next(error)
+  }
+}
+
+const getRoles = async (req, res, next) => {
+  try {
+    const listOfRoles = await rolesDomain.getAll()
+    res.json(listOfRoles)
+
+  } catch (error) {
+    next(error)
+  }
+}
+
+const updateRoles = async (req, res, next) => {
+  try {
+    const listOfRoles = await rolesDomain.updatebyId(req.body, { RolesId: req.params.id })
+    res.json(listOfRoles)
+
+  } catch (error) {
+    next(error)
+  }
+}
+
+const getOneRolesById = async (req, res, next) => {
+  try {
+    const listOfRoles = await rolesDomain.getById(req.params.id)
+    res.json(listOfRoles)
+
+  } catch (error) {
+    next(error)
+  }
+}
+
+module.exports = {
+  newRoles,
+  getRoles,
+  getOneRolesById,
+  updateRoles
+}
+
+
