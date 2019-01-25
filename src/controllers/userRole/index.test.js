@@ -66,6 +66,20 @@ describe('/user get', () => {
 
   })
 
+  test('should return all roleUserLink', async () =>{
+    const response = await request().get(`/api/role`)
+    expect(response.statusCode).toBe(200)
+    expect(response.body.length > 0).toBeTruthy()
+  })
+
+  test('should del roleUserLink', async () =>{
+    const idoflink = userRoleLink.body.id
+    const respDelet = await request().delete(`/api/link-user-role/${idoflink}`)
+    expect(respDelet.statusCode).toBe(200)
+    const response = await request().get(`/api/link-user-role/${idoflink}`)
+    expect(response.statusCode).toBe(500)
+  })
+
   test('should return roleUserLink by roleLinkId', async () => {
     const response = await request().get(`/api/link-user-role/${userRoleLink.body.id}`)
     expect(response.statusCode).toBe(200)
@@ -78,22 +92,4 @@ describe('/user get', () => {
     expect(response.statusCode).toBe(200)
     expect(response.body.length > 0).toBeTruthy()
   })
-
-  // test('should return user by Id', async () =>{
-  //   const response = await request().get(`/api/user/${userCreated.id}`)
-  //   expect(response.statusCode).toBe(200)
-  //   expect(response.body.name).toEqual(userCreated.name)
-  //   expect(response.body.id).toEqual(userCreated.id)
-  // })
-
-  // test('should update user by Id', async () =>{
-  //   const idUserToUpdate = userCreated.id
-  //   criaMock()
-  //   const response = await request().put(`/api/user/${idUserToUpdate}`,userMock)
-    
-  //   expect(response.statusCode).toBe(200)
-  //   expect(response.body.name).toEqual(userMock.name)
-  //   expect(response.body.id).toEqual(idUserToUpdate)
-  // })
-
 })

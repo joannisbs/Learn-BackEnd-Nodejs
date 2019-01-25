@@ -37,7 +37,7 @@ describe('/user get', () => {
     expect(response.body.length > 0).toBeTruthy()
   })
 
-  test('should return user by Id', async () =>{
+  test('should return roles by Id', async () =>{
     const response = await request().get(`/api/role/${roleCreated.id}`)
     expect(response.statusCode).toBe(200)
     expect(response.body.name).toEqual(roleCreated.name)
@@ -45,7 +45,8 @@ describe('/user get', () => {
     expect(response.body.id).toEqual(roleCreated.id)
   })
 
-  test('should update user by Id', async () =>{
+
+  test('should update roles by Id', async () =>{
     const idUserToUpdate = roleCreated.id
     await criaMock()
     const response = await request().put(`/api/role/${idUserToUpdate}`,rolerMock)

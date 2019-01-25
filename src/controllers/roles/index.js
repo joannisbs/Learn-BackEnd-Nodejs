@@ -43,11 +43,14 @@ const getOneRolesById = async (req, res, next) => {
   }
 }
 
+
+
+
 module.exports = {
   newRoles,
   getRoles,
   getOneRolesById,
-  updateRoles
+  updateRoles,
 }
 
 

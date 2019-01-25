@@ -41,32 +41,33 @@ const getUserRoleLinkByRole = async (req, res, next) => {
     next(error)
   }
 }
+const getAllRoleLink = async (req, res, next) => {
+  try {
+    const listOfRoles = await userRoleDomain.getAll()
+    res.json(listOfRoles)
 
-// const updateUser = async (req, res, next) => {
-//   try {
-//     const listOfUserRole = await userRoleDomain.updatebyId(req.body, { userId: req.params.id })
-//     res.json(listOfUserRole)
+  } catch (error) {
+    next(error)
+  }
+}
 
-//   } catch (error) {
-//     next(error)
-//   }
-// }
+const delRoleById = async (req, res, next) => {
+  try {
+    const listOfRoles = await userRoleDomain.delete(req.params.id)
+    res.json(listOfRoles)
 
-// const getOneUserById = async (req, res, next) => {
-//   try {
-//     const listOfUserRole = await userRoleDomain.getById(req.params.id)
-//     res.json(listOfUserRole)
-
-//   } catch (error) {
-//     next(error)
-//   }
-// }
+  } catch (error) {
+    next(error)
+  }
+}
 
 module.exports = {
   newUserRoleLink,
   getUserRoleLinkByUser,
   getRoleLinkById,
-  getUserRoleLinkByRole
+  getUserRoleLinkByRole,
+  getAllRoleLink,
+  delRoleById
 
 
 }
