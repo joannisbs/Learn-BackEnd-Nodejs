@@ -20,9 +20,13 @@ router.put('/role/:id', rolesController.updateRoles)
 router.post('/role', rolesController.newRoles)
 
 // routes of link-user-role
+router.delete('/link-user-role/:id', linkUserRolesController.delRoleById)
+
 router.get('/link-user-role/user/:userId', linkUserRolesController.getUserRoleLinkByUser)
 router.get('/link-user-role/role/:roleId', linkUserRolesController.getUserRoleLinkByRole)
 router.get('/link-user-role/:id', linkUserRolesController.getRoleLinkById)
+router.get('/link-user-role/', linkUserRolesController.getAllRoleLink)
+
 //router.put('/role/:id', rolesController.updateRoles)
 
 router.post('/link-user-role', linkUserRolesController.newUserRoleLink)
