@@ -12,6 +12,22 @@
 
 *post '/user'*    =>  Adciona novo user
 
+    post body req 
+
+    name: 
+      type: STRING,
+      allowNull: false,
+    
+    username: 
+      type: STRING,
+      allowNull: false,
+    
+    password: 
+      type: STRING,
+      allowNull: false,
+    
+
+
 #### Routes Roles
 
 *get '/role/:id'* =>  Busca role pelo roleId
@@ -21,6 +37,17 @@
 *put '/role/:id'* =>  Atualiza role pelo roleId
 
 *post '/role'*    =>  Adciona nova role
+
+    post body req 
+
+    name: 
+      type: STRING,
+      allowNull: false,
+    
+    description: 
+      type: STRING max char 500
+      allowNull: false,
+        
 
 #### Routes Link entre user e role
 
@@ -35,3 +62,13 @@
 *get '/link-user-role/'*              =>  Busca todos os links
 
 *post '/link-user-role'*              =>  Adciona novo link
+
+  post body req 
+
+    userId: 
+      type: STRING,
+      allowNull: false,
+    
+    roleId: 
+      type: STRING,
+      allowNull: false,
