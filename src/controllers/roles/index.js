@@ -13,7 +13,7 @@ const newRoles = async (req, res, next) => {
   }
 }
 
-const getRoles = async (req, res, next) => {
+const getAllRoles = async (req, res, next) => {
   try {
     const listOfRoles = await rolesDomain.getAll()
     res.json(listOfRoles)
@@ -48,7 +48,7 @@ const getOneRolesById = async (req, res, next) => {
 
 module.exports = {
   newRoles,
-  getRoles,
+  getAllRoles,
   getOneRolesById,
   updateRoles,
 }

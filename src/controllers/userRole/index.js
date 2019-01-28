@@ -12,7 +12,7 @@ const newUserRoleLink = async (req, res, next) => {
   }
 }
 
-const getUserRoleLinkByUser = async (req, res, next) => {
+const getAllUserRoleLinksByUser = async (req, res, next) => {
   try {
     const listOfUserRole = await userRoleDomain.getByUserId(req.params.userId)
     res.json(listOfUserRole)
@@ -22,7 +22,7 @@ const getUserRoleLinkByUser = async (req, res, next) => {
   }
 }
 
-const getRoleLinkById = async (req, res, next) => {
+const getOneRoleLinkById = async (req, res, next) => {
   try {
     const listOfUserRole = await userRoleDomain.getById(req.params.id)
     res.json(listOfUserRole)
@@ -32,7 +32,7 @@ const getRoleLinkById = async (req, res, next) => {
   }
 }
 
-const getUserRoleLinkByRole = async (req, res, next) => {
+const getAllUserRoleLinksByRole = async (req, res, next) => {
   try {
     const listOfUserRole = await userRoleDomain.getByRoleId(req.params.roleId)
     res.json(listOfUserRole)
@@ -41,7 +41,7 @@ const getUserRoleLinkByRole = async (req, res, next) => {
     next(error)
   }
 }
-const getAllRoleLink = async (req, res, next) => {
+const getAllRoleLinks = async (req, res, next) => {
   try {
     const listOfRoles = await userRoleDomain.getAll()
     res.json(listOfRoles)
@@ -63,10 +63,10 @@ const delRoleById = async (req, res, next) => {
 
 module.exports = {
   newUserRoleLink,
-  getUserRoleLinkByUser,
-  getRoleLinkById,
-  getUserRoleLinkByRole,
-  getAllRoleLink,
+  getAllUserRoleLinksByUser,
+  getOneRoleLinkById,
+  getAllUserRoleLinksByRole,
+  getAllRoleLinks,
   delRoleById
 
 
