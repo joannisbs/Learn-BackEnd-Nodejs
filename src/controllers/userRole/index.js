@@ -14,7 +14,7 @@ const newUserRoleLink = async (req, res, next) => {
 
 const getAllUserRoleLinksByUser = async (req, res, next) => {
   try {
-    const listOfUserRole = await userRoleDomain.getByUserId(req.params.userId)
+    const listOfUserRole = await userRoleDomain.getByUserId(req.params.userId, res.locals.lazyload)
     res.json(listOfUserRole)
 
   } catch (error) {
@@ -34,7 +34,7 @@ const getOneRoleLinkById = async (req, res, next) => {
 
 const getAllUserRoleLinksByRole = async (req, res, next) => {
   try {
-    const listOfUserRole = await userRoleDomain.getByRoleId(req.params.roleId)
+    const listOfUserRole = await userRoleDomain.getByRoleId(req.params.roleId, res.locals.lazyload)
     res.json(listOfUserRole)
 
   } catch (error) {
@@ -43,7 +43,7 @@ const getAllUserRoleLinksByRole = async (req, res, next) => {
 }
 const getAllRoleLinks = async (req, res, next) => {
   try {
-    const listOfRoles = await userRoleDomain.getAll()
+    const listOfRoles = await userRoleDomain.getAll(res.locals.lazyload)
     res.json(listOfRoles)
 
   } catch (error) {
@@ -68,8 +68,6 @@ module.exports = {
   getAllUserRoleLinksByRole,
   getAllRoleLinks,
   delRoleById
-
-
 }
 
 

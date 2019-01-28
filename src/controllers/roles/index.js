@@ -15,7 +15,7 @@ const newRoles = async (req, res, next) => {
 
 const getAllRoles = async (req, res, next) => {
   try {
-    const listOfRoles = await rolesDomain.getAll()
+    const listOfRoles = await rolesDomain.getAll(res.locals.lazyload)
     res.json(listOfRoles)
 
   } catch (error) {
