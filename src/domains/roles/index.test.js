@@ -69,7 +69,7 @@ describe('get', () => {
   })
   test('should get all roles', async () => {
    
-    const rolesReturned = await rolesDomain.getAll()
+    const rolesReturned = await rolesDomain.getAll({ offset: 1, limit: 5, orderBy: 'name' })
 
     expect(rolesReturned.length > 0).toBeTruthy()
     

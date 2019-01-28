@@ -33,27 +33,27 @@ describe('get', () => {
     userRoleInstance = await userRoleDomain.add(userRoleMock)
   })
 
-  test('should get a roler by id', async () => {
+  test('should get a roleLink by id', async () => {
     const userRolesReturned = await userRoleDomain.getById(userRoleInstance.id)
     expect(userRolesReturned).toEqual(userRoleInstance)
   })
 
-  test('should get a roler by userid', async () => {
-    const userRolesReturned = await userRoleDomain.getByUserId(userRoleMock.userId)
+  test('should get all roleLink by userid', async () => {
+    const userRolesReturned = await userRoleDomain.getByUserId(userRoleMock.userId, { offset: 1, limit: 5, orderBy: 'name' })
     expect(userRolesReturned.length > 0).toBeTruthy()
   })
 
-  test('should get a roler by userid', async () => {
-    const userRolesReturned = await userRoleDomain.getByRoleId(userRoleMock.roleId)
+  test('should get all roleLink by roleId', async () => {
+    const userRolesReturned = await userRoleDomain.getByRoleId(userRoleMock.roleId, { offset: 1, limit: 5, orderBy: 'name' })
     expect(userRolesReturned.length > 0).toBeTruthy()
   })
 
-  test('should get all roles', async () => {
-    const userRolesReturned = await userRoleDomain.getAll(userRoleInstance.id)
+  test('should get all roleLink', async () => {
+    const userRolesReturned = await userRoleDomain.getAll({ offset: 1, limit: 5, orderBy: 'name' })
     expect(userRolesReturned.length > 0).toBeTruthy()
   })
 
-  test('should delete roles', async () => {
+  test('should delete roleLink', async () => {
     const userRolesReturned = await userRoleDomain.delete(userRoleInstance.id)
     expect(userRolesReturned).toBeTruthy()
   })

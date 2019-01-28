@@ -94,11 +94,7 @@ describe('get', () => {
   })
   test('should get all users', async () => {
    
-    const userReturned = await userDomain.getAll({
-      offset: 1,
-      limit: 5,
-      orderBy: 'name'
-    })
+    const userReturned = await userDomain.getAll({ offset: 1, limit: 5, orderBy: 'name' })
 
     expect(userReturned.length > 0).toBeTruthy()
     

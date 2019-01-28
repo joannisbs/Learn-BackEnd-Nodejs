@@ -9,8 +9,8 @@ class RolesDomain {
   async getById (rolesId){
     return (await Roles.findByPk(rolesId)).get({ raw: true})
   }
-  async getAll (){
-    return Roles.findAll({ raw: true })
+  async getAll (lazyLoad){
+    return Roles.findAll({ raw: true, offset: lazyLoad.offset, limit: lazyLoad.limit })
   }
   async updateById(rolerToUpdate, options = {}){
     const { rolesId } = options

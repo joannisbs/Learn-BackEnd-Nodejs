@@ -19,18 +19,18 @@ class RolesDomain {
     return role.get({ raw: true })
   }
 
-  async getByUserId (userId){
-    const role = await UserRoles.findAll( {where:{ userId }},{ raw: true } )
+  async getByUserId (userId, lazyLoad){
+    const role = await UserRoles.findAll( {where:{ userId }},{ raw: true, offset: lazyLoad.offset, limit: lazyLoad.limit } )
     return role
   }
 
-  async getByRoleId (roleId){
-    const role = await UserRoles.findAll( {where:{ roleId }},{ raw: true } )
+  async getByRoleId (roleId, lazyLoad){
+    const role = await UserRoles.findAll( {where:{ roleId }},{ raw: true, offset: lazyLoad.offset, limit: lazyLoad.limit } )
     return role
   }
 
-  async getAll (){
-    return UserRoles.findAll({ raw: true })
+  async getAll (lazyLoad){
+    return UserRoles.findAll({ raw: true, offset: lazyLoad.offset, limit: lazyLoad.limit })
   }
 }
 
