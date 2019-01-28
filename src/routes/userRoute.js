@@ -2,10 +2,11 @@ const router = require('express').Router()
 const userController = require('../controllers/user')
 const rolesController = require('../controllers/roles')
 const linkUserRolesController = require('../controllers/userRole');
+const lazyLoad = require('../middlewares/lazyLoad');
 
 // routes of user
 router.get('/user/:id', userController.getOneUserById)
-router.get('/user', userController.getUser)
+router.get('/user', lazyLoad, userController.getAllUser)
 
 router.put('/user/:id', userController.updateUser)
 
