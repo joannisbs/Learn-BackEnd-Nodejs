@@ -16,11 +16,12 @@ class UserDomain {
   }
   
   async getById (userId){
-    return (await User.findByPk(userId)).get({ raw: true})
+    return (await User.findByPk(userId)).get({ raw: true })
   }
 
-  async getAll (){
-    return User.findAll({ raw: true })
+  async getAll (lazyLoad){
+    const value = await User.findAll({ raw: true, offset: lazyLoad.offset, limit: lazyLoad.limit })
+    return value
   }
 
 }
